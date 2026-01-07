@@ -114,6 +114,12 @@
     background: linear-gradient(var(--background), var(--background)) padding-box,
                 linear-gradient(135deg, hsl(43 74% 49%) 0%, hsl(38 90% 55%) 100%) border-box;
   }
+
+  /* Remove black background from logo */
+  .logo-transparent {
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 1px hsl(43 74% 49% / 0.5));
+  }
 }
 
 @layer utilities {

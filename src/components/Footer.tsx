@@ -37,7 +37,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <img src={logo} alt="Quiflix" className="h-12 w-auto mb-4" />
+            <img src={logo} alt="Quiflix" className="h-12 w-auto logo-transparent mb-4" />
             <p className="text-muted-foreground text-sm mb-6 max-w-xs">
               The fair platform for African cinema. Own your movies, support filmmakers, earn as a distributor.
             </p>
