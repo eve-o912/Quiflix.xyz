@@ -40,13 +40,12 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            <Button variant="hero" size="xl" className="w-full sm:w-auto">
-              <Play className="w-5 h-5" />
-              Start Watching
-            </Button>
-            <Button variant="goldOutline" size="xl" className="w-full sm:w-auto">
-              Become a Distributor
-            </Button>
+            <a href="/auth">
+              <Button variant="hero" size="xl" className="w-full sm:w-auto">
+                <Play className="w-5 h-5" />
+                Own Your Film
+              </Button>
+            </a>
           </div>
 
           {/* Stats */}
