@@ -1,5 +1,6 @@
-import { Mail, Twitter, Instagram, Youtube, Eye, DollarSign, Film, User, Share2, TrendingUp, Shield, Zap, Globe, Wallet, Users } from "lucide-react";
+import { Mail, Twitter, Instagram, Youtube } from "lucide-react";
 import logo from "@/assets/quiflix-logo.png";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const howItWorksData = [
   {
@@ -27,6 +28,9 @@ const whyQuiflixFeatures = [
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const howItWorksAnim = useScrollAnimation(0.1);
+  const whyQuiflixAnim = useScrollAnimation(0.1);
+  const revenueSplitAnim = useScrollAnimation(0.1);
 
   const footerLinks = {
     Legal: [
@@ -47,13 +51,24 @@ const Footer = () => {
     <footer className="bg-card border-t border-border/50">
       <div className="container mx-auto px-4 py-16">
         {/* How It Works Section */}
-        <div className="mb-16">
+        <div 
+          ref={howItWorksAnim.ref}
+          className={`mb-16 transition-all duration-700 ${
+            howItWorksAnim.isVisible 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           <h3 className="font-display text-2xl font-bold text-gradient-gold mb-8 text-center">
             How It Works
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {howItWorksData.map((flow) => (
-              <div key={flow.title} className="text-center">
+            {howItWorksData.map((flow, flowIndex) => (
+              <div 
+                key={flow.title} 
+                className="text-center transition-all duration-500"
+                style={{ transitionDelay: `${flowIndex * 150}ms` }}
+              >
                 <h4 className="font-semibold text-foreground mb-4">{flow.title}</h4>
                 <ul className="space-y-2">
                   {flow.steps.map((step, index) => (
@@ -69,15 +84,25 @@ const Footer = () => {
         </div>
 
         {/* Why Quiflix Section */}
-        <div className="mb-16">
+        <div 
+          ref={whyQuiflixAnim.ref}
+          className={`mb-16 transition-all duration-700 ${
+            whyQuiflixAnim.isVisible 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           <h3 className="font-display text-2xl font-bold text-gradient-gold mb-8 text-center">
             Why Quiflix?
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
-            {whyQuiflixFeatures.map((feature) => (
+            {whyQuiflixFeatures.map((feature, index) => (
               <span
                 key={feature}
-                className="px-4 py-2 rounded-full bg-muted text-sm text-muted-foreground border border-border/50"
+                className={`px-4 py-2 rounded-full bg-muted text-sm text-muted-foreground border border-border/50 transition-all duration-500 ${
+                  whyQuiflixAnim.isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 {feature}
               </span>
@@ -86,7 +111,14 @@ const Footer = () => {
         </div>
 
         {/* Revenue Split */}
-        <div className="mb-16 text-center">
+        <div 
+          ref={revenueSplitAnim.ref}
+          className={`mb-16 text-center transition-all duration-700 ${
+            revenueSplitAnim.isVisible 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           <h3 className="font-display text-xl font-bold text-gradient-gold mb-6">
             Fair Revenue Split
           </h3>
@@ -95,8 +127,14 @@ const Footer = () => {
               { label: "Filmmaker", value: "70%", color: "bg-primary" },
               { label: "Distributor", value: "20%", color: "bg-accent" },
               { label: "Platform", value: "10%", color: "bg-gold-600" },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted border border-border/50">
+            ].map((item, index) => (
+              <div 
+                key={item.label} 
+                className={`flex items-center gap-2 px-4 py-2 rounded-full bg-muted border border-border/50 transition-all duration-500 ${
+                  revenueSplitAnim.isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
                 <div className={`w-2 h-2 rounded-full ${item.color}`} />
                 <span className="text-sm text-muted-foreground">{item.label}</span>
                 <span className="text-sm font-bold text-foreground">{item.value}</span>
