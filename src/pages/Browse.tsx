@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Play, Users, Film, Star, Clock, Loader2 } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const films = [
   {
@@ -115,7 +116,11 @@ const Browse = () => {
                   <p className="text-muted-foreground text-sm mb-4">
                     Get Digital Distribution Tokens and earn 20% on every sale you make.
                   </p>
-                  <Button variant="goldOutline" size="sm">
+                  <Button 
+                    variant="goldOutline" 
+                    size="sm"
+                    onClick={() => window.location.href = "mailto:distributors@quiflix.com?subject=Distributor Application"}
+                  >
                     Apply Now
                   </Button>
                 </div>
@@ -134,7 +139,12 @@ const Browse = () => {
                   <p className="text-muted-foreground text-sm mb-4">
                     Are you a filmmaker? Upload your film and keep 70% of every sale.
                   </p>
-                  <Button variant="goldOutline" size="sm" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground">
+                  <Button 
+                    variant="goldOutline" 
+                    size="sm" 
+                    className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                    onClick={() => window.location.href = "mailto:filmmakers@quiflix.com?subject=Film Submission"}
+                  >
                     Get Started
                   </Button>
                 </div>
@@ -182,7 +192,15 @@ const Browse = () => {
                         <span className="text-primary font-semibold text-sm">
                           KES {film.price}
                         </span>
-                        <Button variant="hero" size="sm" className="h-8 px-3 text-xs">
+                        <Button 
+                          variant="hero" 
+                          size="sm" 
+                          className="h-8 px-3 text-xs"
+                          onClick={() => toast({
+                            title: "Coming Soon!",
+                            description: `Purchase for "${film.title}" will be available soon via M-Pesa.`,
+                          })}
+                        >
                           <Play className="w-3 h-3" />
                           Buy
                         </Button>

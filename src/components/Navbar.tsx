@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -9,11 +9,15 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleSignOut = async () => {
     await signOut();
     navigate("/");
+  };
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    setIsOpen(false);
   };
 
   return (
@@ -21,19 +25,17 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          <button onClick={() => handleNavigate("/")} className="flex items-center gap-2">
             <img src={logo} alt="Quiflix" className="h-10 md:h-12 w-auto logo-transparent" />
-          </a>
+          </button>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
             {user ? (
               <>
-                <a href="/browse">
-                  <Button variant="goldGhost" size="sm">
-                    Browse Films
-                  </Button>
-                </a>
+                <Button variant="goldGhost" size="sm" onClick={() => handleNavigate("/browse")}>
+                  Browse Films
+                </Button>
                 <Button variant="goldGhost" size="sm" onClick={handleSignOut}>
                   <LogOut className="w-4 h-4 mr-1" />
                   Sign Out
@@ -41,16 +43,12 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <a href="/auth">
-                  <Button variant="goldGhost" size="sm">
-                    Sign In
-                  </Button>
-                </a>
-                <a href="/auth">
-                  <Button variant="hero" size="sm">
-                    Get Started
-                  </Button>
-                </a>
+                <Button variant="goldGhost" size="sm" onClick={() => handleNavigate("/auth")}>
+                  Sign In
+                </Button>
+                <Button variant="hero" size="sm" onClick={() => handleNavigate("/auth")}>
+                  Get Started
+                </Button>
               </>
             )}
           </div>
@@ -70,11 +68,9 @@ const Navbar = () => {
             <div className="flex flex-col gap-2">
               {user ? (
                 <>
-                  <a href="/browse">
-                    <Button variant="goldGhost" size="sm" className="w-full">
-                      Browse Films
-                    </Button>
-                  </a>
+                  <Button variant="goldGhost" size="sm" className="w-full" onClick={() => handleNavigate("/browse")}>
+                    Browse Films
+                  </Button>
                   <Button variant="goldGhost" size="sm" onClick={handleSignOut} className="w-full">
                     <LogOut className="w-4 h-4 mr-1" />
                     Sign Out
@@ -82,16 +78,12 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <a href="/auth">
-                    <Button variant="goldGhost" size="sm" className="w-full">
-                      Sign In
-                    </Button>
-                  </a>
-                  <a href="/auth">
-                    <Button variant="hero" size="sm" className="w-full">
-                      Get Started
-                    </Button>
-                  </a>
+                  <Button variant="goldGhost" size="sm" className="w-full" onClick={() => handleNavigate("/auth")}>
+                    Sign In
+                  </Button>
+                  <Button variant="hero" size="sm" className="w-full" onClick={() => handleNavigate("/auth")}>
+                    Get Started
+                  </Button>
                 </>
               )}
             </div>
