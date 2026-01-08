@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Play, Sparkles } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
@@ -18,38 +16,20 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center pt-20">
         <div className="max-w-4xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8 animate-fade-in">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">
-              The Future of African Cinema Distribution
-            </span>
-          </div>
-
           {/* Main Headline */}
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <span className="text-gradient-gold">Own Your Movie</span>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in">
+            <span className="text-foreground">Own Your Film</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 animate-fade-in" style={{ animationDelay: "0.1s" }}>
             Stream premium African films and own your access forever.
             <br className="hidden md:block" />
             Buy directly with M-Pesa or card. No wallet needed.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            <a href="/auth">
-              <Button variant="hero" size="xl" className="w-full sm:w-auto">
-                <Play className="w-5 h-5" />
-                Own Your Film
-              </Button>
-            </a>
-          </div>
-
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-16 max-w-xl mx-auto animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <div className="grid grid-cols-3 gap-8 mt-16 max-w-xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
             {[
               { value: "500+", label: "Films" },
               { value: "50K+", label: "Viewers" },

@@ -1,22 +1,34 @@
-import { Mail, Twitter, Instagram, Youtube } from "lucide-react";
+import { Mail, Twitter, Instagram, Youtube, Eye, DollarSign, Film, User, Share2, TrendingUp, Shield, Zap, Globe, Wallet, Users } from "lucide-react";
 import logo from "@/assets/quiflix-logo.png";
+
+const howItWorksData = [
+  {
+    title: "For Viewers",
+    steps: ["Browse Films", "Pay with M-Pesa", "Watch Forever"],
+  },
+  {
+    title: "For Distributors",
+    steps: ["Get Approved", "Share Your Link", "Earn 20%"],
+  },
+  {
+    title: "For Filmmakers",
+    steps: ["Upload Film", "Set Your Price", "Earn 70%"],
+  },
+];
+
+const whyQuiflixFeatures = [
+  "Secure Access Control",
+  "Instant Payouts",
+  "Global Distribution",
+  "No Wallet Needed",
+  "Own Forever",
+  "Community Driven",
+];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Platform: [
-      { name: "Browse Films", href: "#films" },
-      { name: "How It Works", href: "#how-it-works" },
-      { name: "Pricing", href: "#" },
-      { name: "FAQ", href: "#" },
-    ],
-    Company: [
-      { name: "About Us", href: "#" },
-      { name: "For Filmmakers", href: "#filmmakers" },
-      { name: "For Distributors", href: "#distributors" },
-      { name: "Contact", href: "#" },
-    ],
     Legal: [
       { name: "Terms of Service", href: "#" },
       { name: "Privacy Policy", href: "#" },
@@ -34,7 +46,66 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border/50">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        {/* How It Works Section */}
+        <div className="mb-16">
+          <h3 className="font-display text-2xl font-bold text-gradient-gold mb-8 text-center">
+            How It Works
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {howItWorksData.map((flow) => (
+              <div key={flow.title} className="text-center">
+                <h4 className="font-semibold text-foreground mb-4">{flow.title}</h4>
+                <ul className="space-y-2">
+                  {flow.steps.map((step, index) => (
+                    <li key={step} className="text-sm text-muted-foreground">
+                      <span className="text-primary font-bold mr-2">0{index + 1}</span>
+                      {step}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Why Quiflix Section */}
+        <div className="mb-16">
+          <h3 className="font-display text-2xl font-bold text-gradient-gold mb-8 text-center">
+            Why Quiflix?
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {whyQuiflixFeatures.map((feature) => (
+              <span
+                key={feature}
+                className="px-4 py-2 rounded-full bg-muted text-sm text-muted-foreground border border-border/50"
+              >
+                {feature}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Revenue Split */}
+        <div className="mb-16 text-center">
+          <h3 className="font-display text-xl font-bold text-gradient-gold mb-6">
+            Fair Revenue Split
+          </h3>
+          <div className="flex justify-center items-center gap-4 flex-wrap">
+            {[
+              { label: "Filmmaker", value: "70%", color: "bg-primary" },
+              { label: "Distributor", value: "20%", color: "bg-accent" },
+              { label: "Platform", value: "10%", color: "bg-gold-600" },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted border border-border/50">
+                <div className={`w-2 h-2 rounded-full ${item.color}`} />
+                <span className="text-sm text-muted-foreground">{item.label}</span>
+                <span className="text-sm font-bold text-foreground">{item.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pt-8 border-t border-border/50">
           {/* Brand */}
           <div className="lg:col-span-2">
             <img src={logo} alt="Quiflix" className="h-12 w-auto logo-transparent mb-4" />
