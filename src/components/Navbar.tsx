@@ -16,18 +16,6 @@ const Navbar = () => {
     navigate("/");
   };
 
-  const publicNavLinks = [
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "For Filmmakers", href: "#filmmakers" },
-  ];
-
-  const authNavLinks = [
-    { name: "Browse Films", href: "/browse" },
-    { name: "My Library", href: "/library" },
-  ];
-
-  const navLinks = user ? authNavLinks : publicNavLinks;
-
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
       <div className="container mx-auto px-4">
@@ -37,26 +25,15 @@ const Navbar = () => {
             <img src={logo} alt="Quiflix" className="h-10 md:h-12 w-auto logo-transparent" />
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
             {user ? (
               <>
-                <span className="text-sm text-muted-foreground">
-                  {user.email}
-                </span>
+                <a href="/browse">
+                  <Button variant="goldGhost" size="sm">
+                    Browse Films
+                  </Button>
+                </a>
                 <Button variant="goldGhost" size="sm" onClick={handleSignOut}>
                   <LogOut className="w-4 h-4 mr-1" />
                   Sign Out
@@ -90,38 +67,33 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border/50 animate-fade-in">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
-              <div className="flex flex-col gap-2 pt-4 border-t border-border/50">
-                {user ? (
-                  <Button variant="goldGhost" size="sm" onClick={handleSignOut}>
+            <div className="flex flex-col gap-2">
+              {user ? (
+                <>
+                  <a href="/browse">
+                    <Button variant="goldGhost" size="sm" className="w-full">
+                      Browse Films
+                    </Button>
+                  </a>
+                  <Button variant="goldGhost" size="sm" onClick={handleSignOut} className="w-full">
                     <LogOut className="w-4 h-4 mr-1" />
                     Sign Out
                   </Button>
-                ) : (
-                  <>
-                    <a href="/auth">
-                      <Button variant="goldGhost" size="sm" className="w-full">
-                        Sign In
-                      </Button>
-                    </a>
-                    <a href="/auth">
-                      <Button variant="hero" size="sm" className="w-full">
-                        Get Started
-                      </Button>
-                    </a>
-                  </>
-                )}
-              </div>
+                </>
+              ) : (
+                <>
+                  <a href="/auth">
+                    <Button variant="goldGhost" size="sm" className="w-full">
+                      Sign In
+                    </Button>
+                  </a>
+                  <a href="/auth">
+                    <Button variant="hero" size="sm" className="w-full">
+                      Get Started
+                    </Button>
+                  </a>
+                </>
+              )}
             </div>
           </div>
         )}
