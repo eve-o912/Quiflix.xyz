@@ -151,6 +151,16 @@ const Footer = () => {
               The fair platform for African cinema. Own your movies, support filmmakers, earn as a distributor.
             </p>
             
+            {/* Quifund Link */}
+            <a
+              href="https://quifund.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-primary/10 border border-primary/30 text-sm text-primary hover:bg-primary/20 transition-all duration-300"
+            >
+              For Investors & Brands → quifund.xyz
+            </a>
+            
             {/* Social Links */}
             <div className="flex gap-4">
               {socialLinks.map((social) => (
