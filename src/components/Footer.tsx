@@ -83,6 +83,35 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Quifund CTA - For Investors & Brands */}
+        <div 
+          className={`mb-16 transition-all duration-700 ${
+            howItWorksAnim.isVisible 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-10"
+          }`}
+          style={{ transitionDelay: "300ms" }}
+        >
+          <a
+            href="https://quifund.xyz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block max-w-2xl mx-auto p-6 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/10 to-primary/20 border border-primary/30 hover:border-primary/50 transition-all duration-300 group"
+          >
+            <div className="text-center">
+              <h3 className="font-display text-xl md:text-2xl font-bold text-gradient-gold mb-2">
+                Investors & Brands
+              </h3>
+              <p className="text-muted-foreground text-sm md:text-base mb-4">
+                Want to fund African cinema or get visibility for your brand? Join Quifund.
+              </p>
+              <span className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all duration-300">
+                Visit quifund.xyz →
+              </span>
+            </div>
+          </a>
+        </div>
+
         {/* Why Quiflix Section */}
         <div 
           ref={whyQuiflixAnim.ref}
@@ -150,16 +179,6 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm mb-6 max-w-xs">
               The fair platform for African cinema. Own your movies, support filmmakers, earn as a distributor.
             </p>
-            
-            {/* Quifund Link */}
-            <a
-              href="https://quifund.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-primary/10 border border-primary/30 text-sm text-primary hover:bg-primary/20 transition-all duration-300"
-            >
-              For Investors & Brands → quifund.xyz
-            </a>
             
             {/* Social Links */}
             <div className="flex gap-4">
