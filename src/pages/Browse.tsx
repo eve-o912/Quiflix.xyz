@@ -119,7 +119,9 @@ const Browse = () => {
                   <Button 
                     variant="goldOutline" 
                     size="sm"
-                    onClick={() => window.location.href = "mailto:distributors@quiflix.com?subject=Distributor Application"}
+                    onClick={() => {
+                      window.open("mailto:distributors@quiflix.com?subject=Distributor Application", "_blank");
+                    }}
                   >
                     Apply Now
                   </Button>
@@ -143,7 +145,9 @@ const Browse = () => {
                     variant="goldOutline" 
                     size="sm" 
                     className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                    onClick={() => window.location.href = "mailto:filmmakers@quiflix.com?subject=Film Submission"}
+                    onClick={() => {
+                      window.open("mailto:filmmakers@quiflix.com?subject=Film Submission", "_blank");
+                    }}
                   >
                     Get Started
                   </Button>
