@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { WalletConnect } from "@/components/WalletConnect";
 import logo from "@/assets/quiflix-logo.png";
 
 const Navbar = () => {
@@ -36,6 +37,7 @@ const Navbar = () => {
                 <Button variant="goldGhost" size="sm" onClick={() => handleNavigate("/browse")}>
                   Browse Films
                 </Button>
+                <WalletConnect />
                 <Button variant="goldGhost" size="sm" onClick={handleSignOut}>
                   <LogOut className="w-4 h-4 mr-1" />
                   Sign Out
@@ -71,6 +73,9 @@ const Navbar = () => {
                   <Button variant="goldGhost" size="sm" className="w-full" onClick={() => handleNavigate("/browse")}>
                     Browse Films
                   </Button>
+                  <div className="flex justify-center py-2">
+                    <WalletConnect />
+                  </div>
                   <Button variant="goldGhost" size="sm" onClick={handleSignOut} className="w-full">
                     <LogOut className="w-4 h-4 mr-1" />
                     Sign Out
