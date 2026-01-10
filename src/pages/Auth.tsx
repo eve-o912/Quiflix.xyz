@@ -82,9 +82,9 @@ const Auth = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <div className="p-6">
-        <a href="/" className="inline-block">
+        <button type="button" onClick={() => navigate("/")} className="inline-block">
           <img src={logo} alt="Quiflix" className="h-10 w-auto logo-transparent" />
-        </a>
+        </button>
       </div>
 
       {/* Main Content */}
