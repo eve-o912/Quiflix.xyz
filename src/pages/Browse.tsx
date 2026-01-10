@@ -145,9 +145,7 @@ const Browse = () => {
                     variant="goldOutline" 
                     size="sm" 
                     className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-                    onClick={() => {
-                      window.open("mailto:filmmakers@quiflix.com?subject=Film Submission", "_blank");
-                    }}
+                    onClick={() => navigate("/submit-film")}
                   >
                     Get Started
                   </Button>
