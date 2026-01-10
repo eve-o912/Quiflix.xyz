@@ -4,6 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* OnchainKit overrides - must come after Tailwind */
+[data-ock] {
+  --ock-font-family: 'Inter', sans-serif;
+  --ock-bg-default: hsl(0 0% 7%);
+  --ock-bg-default-hover: hsl(0 0% 10%);
+  --ock-bg-default-active: hsl(0 0% 12%);
+  --ock-bg-alternate: hsl(0 0% 4%);
+  --ock-bg-inverse: hsl(43 74% 49%);
+  --ock-text-foreground: hsl(43 30% 90%);
+  --ock-text-inverse: hsl(0 0% 4%);
+  --ock-border-radius: 0.5rem;
+}
+
 @layer base {
   :root {
     /* Quiflix Premium Cinema Theme */

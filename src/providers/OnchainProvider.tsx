@@ -4,7 +4,6 @@ import { base } from 'wagmi/chains';
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { coinbaseWallet } from 'wagmi/connectors';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import '@coinbase/onchainkit/styles.css';
 
 // Create wagmi config for Base network
 const wagmiConfig = createConfig({
