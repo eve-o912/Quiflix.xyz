@@ -1,42 +1,71 @@
+import { Button } from "@/components/ui/button";
+import { Wallet, LogOut, ExternalLink } from "lucide-react";
+import { useOnchain } from "@/providers/OnchainProvider";
 import {
-  ConnectWallet,
-  Wallet,
-  WalletDropdown,
-  WalletDropdownDisconnect,
-} from '@coinbase/onchainkit/wallet';
-import {
-  Address,
-  Avatar,
-  Name,
-  Identity,
-  EthBalance,
-} from '@coinbase/onchainkit/identity';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface WalletConnectProps {
   className?: string;
 }
 
 export const WalletConnect = ({ className }: WalletConnectProps) => {
+  const { wallet, connect, disconnect } = useOnchain();
+
+  const formatAddress = (address: string) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
+
+  if (wallet.isConnected && wallet.address) {
+    return (
+      <div className={className}>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button 
+              variant="goldOutline" 
+              size="sm"
+              className="gap-2"
+            >
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              {formatAddress(wallet.address)}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-48">
+            <DropdownMenuItem 
+              onClick={() => window.open(`https://basescan.org/address/${wallet.address}`, '_blank')}
+              className="gap-2 cursor-pointer"
+            >
+              <ExternalLink className="w-4 h-4" />
+              View on BaseScan
+            </DropdownMenuItem>
+            <DropdownMenuItem 
+              onClick={disconnect}
+              className="gap-2 cursor-pointer text-destructive"
+            >
+              <LogOut className="w-4 h-4" />
+              Disconnect
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    );
+  }
+
   return (
     <div className={className}>
-      <Wallet>
-        <ConnectWallet className="!bg-gradient-to-r !from-gold-500 !to-gold-600 !text-background !font-semibold !rounded-md !px-4 !py-2 hover:!opacity-90 !transition-opacity">
-          <Avatar className="h-6 w-6" />
-          <Name />
-        </ConnectWallet>
-        <WalletDropdown className="!bg-card !border-border">
-          <Identity 
-            className="!px-4 !pt-3 !pb-2" 
-            hasCopyAddressOnClick
-          >
-            <Avatar />
-            <Name />
-            <Address />
-            <EthBalance />
-          </Identity>
-          <WalletDropdownDisconnect className="!text-destructive hover:!bg-destructive/10" />
-        </WalletDropdown>
-      </Wallet>
+      <Button 
+        variant="goldOutline" 
+        size="sm"
+        onClick={connect}
+        disabled={wallet.isConnecting}
+        className="gap-2"
+      >
+        <Wallet className="w-4 h-4" />
+        {wallet.isConnecting ? "Connecting..." : "Connect Wallet"}
+      </Button>
     </div>
   );
 };
