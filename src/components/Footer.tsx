@@ -221,11 +221,6 @@ const Footer = () => {
             © {currentYear} Quiflix. All rights reserved.
           </p>
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
-            <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <span className="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Secured on <span className="text-primary font-semibold">Base</span> network. USDC Payment
-            </p>
-            <span className="hidden md:inline text-muted-foreground">•</span>
             <p className="text-sm text-muted-foreground">
               Powered by <span className="text-primary">Base</span> & <span className="text-primary">Lisk</span>
             </p>

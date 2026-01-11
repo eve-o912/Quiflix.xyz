@@ -14,7 +14,139 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      distribution_tokens: {
+        Row: {
+          created_at: string
+          distributor_id: string
+          film_id: string
+          id: string
+          is_active: boolean | null
+          token_code: string
+        }
+        Insert: {
+          created_at?: string
+          distributor_id: string
+          film_id: string
+          id?: string
+          is_active?: boolean | null
+          token_code: string
+        }
+        Update: {
+          created_at?: string
+          distributor_id?: string
+          film_id?: string
+          id?: string
+          is_active?: boolean | null
+          token_code?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "distribution_tokens_film_id_fkey"
+            columns: ["film_id"]
+            isOneToOne: false
+            referencedRelation: "films"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      films: {
+        Row: {
+          created_at: string
+          currency: string | null
+          description: string | null
+          duration: string | null
+          film_url: string
+          genre: string | null
+          id: string
+          poster_url: string
+          selling_price: number
+          status: string | null
+          title: string
+          trailer_url: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          currency?: string | null
+          description?: string | null
+          duration?: string | null
+          film_url: string
+          genre?: string | null
+          id?: string
+          poster_url: string
+          selling_price: number
+          status?: string | null
+          title: string
+          trailer_url?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          currency?: string | null
+          description?: string | null
+          duration?: string | null
+          film_url?: string
+          genre?: string | null
+          id?: string
+          poster_url?: string
+          selling_price?: number
+          status?: string | null
+          title?: string
+          trailer_url?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      purchases: {
+        Row: {
+          amount: number
+          created_at: string
+          currency: string | null
+          distributor_id: string | null
+          film_id: string
+          id: string
+          payment_method: string
+          status: string | null
+          transaction_hash: string | null
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          currency?: string | null
+          distributor_id?: string | null
+          film_id: string
+          id?: string
+          payment_method: string
+          status?: string | null
+          transaction_hash?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          currency?: string | null
+          distributor_id?: string | null
+          film_id?: string
+          id?: string
+          payment_method?: string
+          status?: string | null
+          transaction_hash?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "purchases_film_id_fkey"
+            columns: ["film_id"]
+            isOneToOne: false
+            referencedRelation: "films"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

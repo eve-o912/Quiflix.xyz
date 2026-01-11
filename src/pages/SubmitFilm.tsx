@@ -9,7 +9,8 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Film, Upload, DollarSign, Link, Image, Video, ArrowLeft, Loader2 } from "lucide-react";
+import FileUpload from "@/components/FileUpload";
+import { Film, Upload, DollarSign, Link, ArrowLeft, Loader2 } from "lucide-react";
 
 const SubmitFilm = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const SubmitFilm = () => {
     trailerUrl: "",
     filmUrl: "",
     sellingPrice: "",
+    currency: "KES",
   });
 
   // Redirect if not logged in
@@ -104,6 +106,7 @@ const SubmitFilm = () => {
         trailerUrl: "",
         filmUrl: "",
         sellingPrice: "",
+        currency: "KES",
       });
 
       // Navigate back to browse
@@ -210,69 +213,60 @@ const SubmitFilm = () => {
             </div>
           </div>
 
-          {/* Media Links */}
+          {/* Media Files */}
+          <div className="bg-card rounded-2xl border border-border/50 p-6 space-y-6">
+            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+              <Upload className="w-5 h-5 text-primary" />
+              Media Files
+            </h2>
+
+            <div className="space-y-6">
+              <FileUpload
+                bucket="posters"
+                accept="image/*"
+                label="Poster Image *"
+                description="Upload your film poster (JPG, PNG, max 10MB)"
+                value={formData.posterUrl}
+                onChange={(url) => setFormData((prev) => ({ ...prev, posterUrl: url }))}
+                icon="image"
+              />
+
+              <FileUpload
+                bucket="trailers"
+                accept="video/*"
+                label="Trailer Video (Optional)"
+                description="Upload your trailer (MP4, max 50MB)"
+                value={formData.trailerUrl}
+                onChange={(url) => setFormData((prev) => ({ ...prev, trailerUrl: url }))}
+                icon="video"
+              />
+            </div>
+          </div>
+
+          {/* Film URL */}
           <div className="bg-card rounded-2xl border border-border/50 p-6 space-y-6">
             <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
               <Link className="w-5 h-5 text-primary" />
-              Media Links
+              Full Film Link
             </h2>
 
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="posterUrl" className="flex items-center gap-2">
-                  <Image className="w-4 h-4 text-muted-foreground" />
-                  Poster Image URL *
-                </Label>
-                <Input
-                  id="posterUrl"
-                  name="posterUrl"
-                  value={formData.posterUrl}
-                  onChange={handleInputChange}
-                  placeholder="https://drive.google.com/... or direct image link"
-                  className="mt-1.5"
-                  required
-                />
-                <p className="text-xs text-muted-foreground mt-1">
-                  Google Drive link or direct image URL for your film poster
-                </p>
-              </div>
-
-              <div>
-                <Label htmlFor="trailerUrl" className="flex items-center gap-2">
-                  <Video className="w-4 h-4 text-muted-foreground" />
-                  Trailer URL (Optional)
-                </Label>
-                <Input
-                  id="trailerUrl"
-                  name="trailerUrl"
-                  value={formData.trailerUrl}
-                  onChange={handleInputChange}
-                  placeholder="https://youtube.com/... or video link"
-                  className="mt-1.5"
-                />
-                <p className="text-xs text-muted-foreground mt-1">
-                  YouTube, Vimeo, or Google Drive link to your trailer
-                </p>
-              </div>
-
-              <div>
-                <Label htmlFor="filmUrl" className="flex items-center gap-2">
-                  <Film className="w-4 h-4 text-muted-foreground" />
-                  Full Film URL *
-                </Label>
-                <Input
-                  id="filmUrl"
-                  name="filmUrl"
-                  value={formData.filmUrl}
-                  onChange={handleInputChange}
-                  placeholder="https://drive.google.com/..."
-                  className="mt-1.5"
-                  required
-                />
-                <p className="text-xs text-muted-foreground mt-1">
-                  Google Drive link to your full film. This will be securely accessed only by verified buyers.
-                </p>
-              </div>
+            <div>
+              <Label htmlFor="filmUrl" className="flex items-center gap-2">
+                <Film className="w-4 h-4 text-muted-foreground" />
+                Full Film URL *
+              </Label>
+              <Input
+                id="filmUrl"
+                name="filmUrl"
+                value={formData.filmUrl}
+                onChange={handleInputChange}
+                placeholder="https://drive.google.com/..."
+                className="mt-1.5"
+                required
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                Google Drive link to your full film. This will be securely accessed only by verified buyers.
+              </p>
             </div>
           </div>
 
