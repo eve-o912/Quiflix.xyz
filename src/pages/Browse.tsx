@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PurchaseModal from "@/components/PurchaseModal";
 import { Button } from "@/components/ui/button";
 import { Play, Users, Film, Star, Clock, Loader2 } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
 
 const films = [
   {
@@ -67,6 +67,8 @@ const films = [
 const Browse = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
+  const [selectedFilm, setSelectedFilm] = useState<typeof films[0] | null>(null);
+  const [isPurchaseOpen, setIsPurchaseOpen] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -198,10 +200,10 @@ const Browse = () => {
                           variant="hero" 
                           size="sm" 
                           className="h-8 px-3 text-xs"
-                          onClick={() => toast({
-                            title: "Coming Soon!",
-                            description: `Purchase for "${film.title}" will be available soon via M-Pesa.`,
-                          })}
+                          onClick={() => {
+                            setSelectedFilm(film);
+                            setIsPurchaseOpen(true);
+                          }}
                         >
                           <Play className="w-3 h-3" />
                           Buy
@@ -224,6 +226,15 @@ const Browse = () => {
       </main>
 
       <Footer />
+
+      <PurchaseModal
+        film={selectedFilm}
+        isOpen={isPurchaseOpen}
+        onClose={() => {
+          setIsPurchaseOpen(false);
+          setSelectedFilm(null);
+        }}
+      />
     </div>
   );
 };
