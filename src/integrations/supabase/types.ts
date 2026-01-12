@@ -49,6 +49,63 @@ export type Database = {
           },
         ]
       }
+      distributor_applications: {
+        Row: {
+          additional_info: string | null
+          created_at: string
+          distribution_plan: string
+          email: string
+          experience: string | null
+          full_name: string
+          id: string
+          phone: string | null
+          portfolio_url: string | null
+          social_media_links: string | null
+          status: string | null
+          target_customers: number
+          target_films: string
+          timeline_months: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          additional_info?: string | null
+          created_at?: string
+          distribution_plan: string
+          email: string
+          experience?: string | null
+          full_name: string
+          id?: string
+          phone?: string | null
+          portfolio_url?: string | null
+          social_media_links?: string | null
+          status?: string | null
+          target_customers: number
+          target_films: string
+          timeline_months: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          additional_info?: string | null
+          created_at?: string
+          distribution_plan?: string
+          email?: string
+          experience?: string | null
+          full_name?: string
+          id?: string
+          phone?: string | null
+          portfolio_url?: string | null
+          social_media_links?: string | null
+          status?: string | null
+          target_customers?: number
+          target_films?: string
+          timeline_months?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       films: {
         Row: {
           created_at: string

@@ -121,9 +121,7 @@ const Browse = () => {
                   <Button 
                     variant="goldOutline" 
                     size="sm"
-                    onClick={() => {
-                      window.open("mailto:distributors@quiflix.com?subject=Distributor Application", "_blank");
-                    }}
+                    onClick={() => navigate("/distributor-apply")}
                   >
                     Apply Now
                   </Button>
