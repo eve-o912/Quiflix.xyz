@@ -209,7 +209,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_distributor_from_token: {
+        Args: { film_id_to_check: string; token_to_check: string }
+        Returns: string
+      }
+      validate_distribution_token: {
+        Args: { film_id_to_check: string; token_to_check: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
