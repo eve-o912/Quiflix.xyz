@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Browse from "./pages/Browse";
 import SubmitFilm from "./pages/SubmitFilm";
+import DistributorApply from "./pages/DistributorApply";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = forwardRef((_, _ref) => (
               <Route path="/auth" element={<Auth />} />
               <Route path="/browse" element={<Browse />} />
               <Route path="/submit-film" element={<SubmitFilm />} />
+              <Route path="/distributor-apply" element={<DistributorApply />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
